@@ -22,6 +22,33 @@ router.get('/getthanhpho/:idvung', async (req, res) => {
   }
 })
 
+router.get('/getfulltp', async (req, res) => {
+  try {
+    const vung = await Vung.find().lean()
+    const vungjson = await Promise.all(
+      vung.map(async v1 => {
+        const thanhpho = await Promise.all(
+          v1.thanhpho.map(async tp => {
+            const tp1 = await ThanhPho.findById(tp._id)
+            return {
+              name: tp1.name,
+              mathanhpho: tp1.mathanhpho
+            }
+          })
+        )
+        return {
+          idthanhpho: v1._id,
+          namevung: v1.name,
+          thanhpho: thanhpho
+        }
+      })
+    )
+    res.json(vungjson)
+  } catch (error) {
+    console.error(error)
+  }
+})
+
 router.post('/postthanhpho/:idvung', async (req, res) => {
   try {
     const idvung = req.params.idvung
