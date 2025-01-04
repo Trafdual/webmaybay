@@ -17,7 +17,7 @@ router.post(
   async (req, res) => {
     try {
       const { name, mahangmaybay } = req.body
-      const domain = 'http://localhost:8080'
+      const domain = 'https://webmaybay.vercel.app'
       const image = req.files['image']
         ? `${domain}/${req.files['image'][0].filename}`
         : null
@@ -42,7 +42,7 @@ router.post(
     try {
       const idhang = req.params.idhang
       const { name, mahangmaybay } = req.body
-      const domain = 'http://localhost:8080'
+      const domain = 'https://webmaybay.vercel.app'
 
       const image = req.files['image']
         ? `${domain}/${req.files['image'][0].filename}`
