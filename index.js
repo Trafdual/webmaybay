@@ -10,6 +10,7 @@ const MongoStore = require('connect-mongo')
 const vungroutes = require('./routes/VungRoutes')
 const thanhphoroutes = require('./routes/ThanhPhoRoutes')
 const hangmaybayroutes = require('./routes/HangMayBayRoutes')
+const phantramRoutes= require('./routes/PhanTramRoutes')
 var app = express()
 
 app.use(methodOverride('_method'))
@@ -50,6 +51,7 @@ app.use(express.static(path.join(__dirname, '/uploads')))
 app.use('/', vungroutes)
 app.use('/', thanhphoroutes)
 app.use('/',hangmaybayroutes)
+app.use('/', phantramRoutes)
 
 
 app.listen(8080, () => {
