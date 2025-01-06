@@ -89,7 +89,7 @@ router.post('/deleteblog/:idblog', async (req, res) => {
   }
 })
 
-router.get('/getblog/:idtheloai', async (req, res) => {
+router.get('/getblogid/:idtheloai', async (req, res) => {
   try {
     const idtheloai = req.params.idtheloai
     const theloai = await TheLoaiBlog.findById(idtheloai)
