@@ -25,9 +25,13 @@ router.post('/putphantram/:idphantram', async (req, res) => {
   try {
     const { phantram } = req.body
     const idphantram = req.params.idphantram
-    const phantram1 = await PhanTram.findByIdAndUpdate(idphantram, {
-      phantram: phantram
-    })
+    const phantram1 = await PhanTram.findByIdAndUpdate(
+      idphantram,
+      {
+        phantram: phantram
+      },
+      { new: true }
+    )
     res.json(phantram1)
   } catch (error) {
     console.error(error)
