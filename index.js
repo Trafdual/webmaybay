@@ -14,6 +14,7 @@ const phantramRoutes= require('./routes/PhanTramRoutes')
 const theloaiblogRoutes = require('./routes/TheLoaiBlogRoutes')
 const blogroutes = require('./routes/BlogRoutes')
 const hoadonRoutes = require('./routes/HoaDonRoutes')
+const userRoutes = require('./routes/UserRoutes')
 var app = express()
 
 app.use(methodOverride('_method'))
@@ -58,6 +59,8 @@ app.use('/', phantramRoutes)
 app.use('/',theloaiblogRoutes)
 app.use('/',blogroutes)
 app.use('/',hoadonRoutes)
+app.use('/', userRoutes)
+
 
 app.listen(8080, () => {
   try {
