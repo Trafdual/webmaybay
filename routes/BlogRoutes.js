@@ -30,6 +30,16 @@ router.get('/getblog', async (req, res) => {
   }
 })
 
+router.get('/getchitietblog/:idblog',async(req,res)=>{
+  try {
+    const idblog = req.params.idblog
+    const blog = await Blog.findById(idblog)
+    res.json(blog) 
+  } catch (error) {
+    console.error(error)
+  }
+})
+
 router.post('/postblog/:idtheloai', async (req, res) => {
   try {
     const idtheloai = req.params.idtheloai
