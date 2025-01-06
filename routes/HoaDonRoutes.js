@@ -78,6 +78,7 @@ router.post('/posthoadon', async (req, res) => {
       phone,
       email,
       ngaybay,
+      chuyenbay,
       hang,
       cityfrom,
       cityto,
@@ -100,13 +101,14 @@ router.post('/posthoadon', async (req, res) => {
     } = req.body
     const thanhphodi = await ThanhPho.findOne({ mathanhpho: cityfrom })
     const thanhphoto = await ThanhPho.findOne({ mathanhpho: cityto })
-    const hangmaybay = await HangMayBay.findOne({ name: hang })
+    const hangmaybay = await HangMayBay.findOne({ mahangmaybay: hang })
 
     const hoadon = new HoaDon({
       namenguoibay,
       phone,
       email,
       ngaybay,
+      chuyenbay,
       hang: hangmaybay._id,
       cityfrom: thanhphodi._id,
       cityto: thanhphoto._id,
@@ -121,7 +123,8 @@ router.post('/posthoadon', async (req, res) => {
       ghichu,
       themkhach,
       sokhachthem: 0,
-      tienve
+      tienve,
+      trangthai: 'Chờ thanh toán'
     })
     hoadon.mahoadon = 'HD' + hoadon._id.toString().slice(0, 4)
     if (kygui === true) {

@@ -46,6 +46,25 @@ router.post('/postblog/:idtheloai', async (req, res) => {
   }
 })
 
+router.get('/getblog/:namtheloai', async (req, res) => {
+  try {
+    const nametheloai = req.params.namtheloai
+    const theloai = await TheLoaiBlog.findOne({ name: nametheloai })
+    const blog = await Promise.all(
+      theloai.blog.map(async bl => {
+        const blog1 = await Blog.findById(bl._id)
+        return {
+          _id: blog1._id,
+          tieude: blog1.tieude
+        }
+      })
+    )
+    res.json(blog)
+  } catch (error) {
+    console.error(error)
+  }
+})
+
 router.post('/deleteblog/:idblog', async (req, res) => {
   try {
     const idblog = req.params.idblog
