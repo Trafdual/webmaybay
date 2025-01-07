@@ -2,6 +2,8 @@ const router = require('express').Router()
 const HangMayBay = require('../models/HangMayBayModel')
 const ThanhPho = require('../models/ThanhPhoModel')
 const HoaDon = require('../models/HoaDonModel')
+const momenttimezone = require('moment-timezone')
+const moment = require('moment')
 
 router.get('/gethoadon', async (req, res) => {
   try {
@@ -22,7 +24,10 @@ router.get('/gethoadon', async (req, res) => {
           cityto: thanhphoto.name,
           hourfrom: hoadon1.hourfrom,
           hourto: hoadon1.hourto,
-          tongtien: hoadon1.tongtien
+          tongtien: hoadon1.tongtien,
+          trangthai: hoadon1.trangthai,
+          ngaytao:moment(hoadon1.ngaytao).format('DD-MM-YYYY')
+
         }
       })
     )
@@ -64,7 +69,8 @@ router.get('/getchitiethoadon/:id', async (req, res) => {
       themkhach: hoadon.themkhach,
       sokhachthem: hoadon.sokhachthem || 0,
       tienve: hoadon.tienve,
-      tongtien: hoadon.tongtien
+      tongtien: hoadon.tongtien,
+      ngaytao: moment(hoadon.ngaytao).format('DD-MM-YYYY')
     })
   } catch (error) {
     console.error(error)
@@ -124,7 +130,8 @@ router.post('/posthoadon', async (req, res) => {
       themkhach,
       sokhachthem: 0,
       tienve,
-      trangthai: 'Chờ thanh toán'
+      trangthai: 'Chờ thanh toán',
+      ngaytao: momenttimezone().toDate()
     })
     hoadon.mahoadon = 'HD' + hoadon._id.toString().slice(0, 4)
     if (kygui === true) {
