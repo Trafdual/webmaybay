@@ -21,13 +21,13 @@ router.post('/login', async (req, res) => {
     const user = await User.findOne({ username })
 
     if (!user) {
-      res.json({ message: 'tên đăng nhập không chính xác' })
+      res.json({ message: 'Tên đăng nhập không chính xác' })
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password)
 
     if (!isPasswordValid) {
-      return res.json({ message: 'nhập sai mật khẩu' })
+      return res.json({ message: 'Mật khẩu không chính xác' })
     }
 
     res.json(user)
