@@ -27,7 +27,8 @@ const hoadonSchema = new mongoose.Schema({
   sokhachthem: { type: Number },
   tienve: { type: Number },
   tongtien: { type: Number },
-  trangthai: { type: String }
+  trangthai: { type: String },
+  ngaytao:{type:Date},
 })
 
 const hoadon = mongoose.model('hoadon', hoadonSchema)

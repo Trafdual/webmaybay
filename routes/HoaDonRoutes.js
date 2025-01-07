@@ -168,7 +168,7 @@ router.post('/searchhoadon', async (req, res) => {
     let condition
     if (/^\d{10,11}$/.test(query)) {
       condition = { phone: query }
-    } else if (/^[a-fA-F0-9]{24}$/.test(query)) {
+    } else if (/^[a-zA-Z0-9]+$/.test(query)) {
       condition = { mahoadon: query }
     } else {
       return res.status(400).json({ error: 'Dữ liệu nhập không hợp lệ.' })
