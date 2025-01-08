@@ -107,7 +107,6 @@ router.post('/posthoadon', async (req, res) => {
       email,
       ngaybay,
       chuyenbay,
-      hang: hangmaybay._id,
       cityfrom: thanhphodi._id,
       cityto: thanhphoto._id,
       hourfrom,
@@ -118,6 +117,9 @@ router.post('/posthoadon', async (req, res) => {
       trangthai: 'Chờ thanh toán',
       ngaytao: momenttimezone().toDate()
     })
+    if (hangmaybay) {
+      hoadon.hang = hangmaybay._id
+    }
 
     hoadon.khachbay = khachhangs.map(
       ({ namebay, doituong, kygui, hanhlykygui, pricekygui }) => ({
