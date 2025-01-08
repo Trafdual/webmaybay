@@ -10,20 +10,15 @@ router.get('/gethoadon', async (req, res) => {
     const hoadon = await HoaDon.find().lean()
     const hoadonjson = await Promise.all(
       hoadon.map(async hoadon1 => {
-        const hangmaybay = await HangMayBay.findById(hoadon1.hang)
-        const thanhphodi = await ThanhPho.findById(hoadon1.cityfrom)
-        const thanhphoto = await ThanhPho.findById(hoadon1.cityto)
         return {
           mahoadon: hoadon1.mahoadon,
-          namenguoibay: hoadon1.namenguoibay,
+          namelienhe: hoadon1.namelienhe,
           phone: hoadon1.phone,
           email: hoadon1.email,
           ngaybay: hoadon1.ngaybay,
-          hang: hangmaybay.name,
-          cityfrom: thanhphodi.name,
-          cityto: thanhphoto.name,
-          hourfrom: hoadon1.hourfrom,
-          hourto: hoadon1.hourto,
+          ngayve: hoadon1.ngayve || '',
+          chuyenbay: hoadon1.chuyenbay,
+          chuyenbayve: hoadon1.chuyenbayve,
           tongtien: hoadon1.tongtien,
           trangthai: hoadon1.trangthai,
           ngaytao: moment(hoadon1.ngaytao).format('DD-MM-YYYY')
@@ -45,31 +40,30 @@ router.get('/getchitiethoadon/:id', async (req, res) => {
     const thanhphoto = await ThanhPho.findById(hoadon.cityto)
     res.json({
       mahoadon: hoadon.mahoadon,
-      namenguoibay: hoadon.namenguoibay,
+      namelienhe: hoadon.namelienhe,
       phone: hoadon.phone,
       email: hoadon.email,
       ngaybay: hoadon.ngaybay,
+      ngayve: hoadon.ngayve || '',
+      hangve: hoadon.hangve || '',
+      chuyenbayve: hoadon.chuyenbayve || '',
+      hourvefrom: hoadon.hourvefrom || '',
+      hourveto: hoadon.hourto || '',
+      tienveve: hoadon.tienveve || '',
       hang: hangmaybay.name,
       cityfrom: thanhphodi.name,
       cityto: thanhphoto.name,
       hourfrom: hoadon.hourfrom,
       hourto: hoadon.hourto,
-      treem: hoadon.treem,
-      tresosinh: hoadon.tresosinh,
-      nguoilon: hoadon.nguoilon,
-      kygui: hoadon.kygui,
-      hanhlykygui: hoadon.hanhlykygui || '',
-      pricekygui: hoadon.pricekygui || 0,
       xuathoadon: hoadon.xuathoadon,
       masothue: hoadon.masothue || '',
       tencongty: hoadon.tencongty || '',
       diachi: hoadon.diachi || '',
       ghichu: hoadon.ghichu || '',
-      themkhach: hoadon.themkhach,
-      sokhachthem: hoadon.sokhachthem || 0,
       tienve: hoadon.tienve,
       tongtien: hoadon.tongtien,
-      ngaytao: moment(hoadon.ngaytao).format('DD-MM-YYYY')
+      ngaytao: moment(hoadon.ngaytao).format('DD-MM-YYYY'),
+      khachbay: hoadon.khachbay
     })
   } catch (error) {
     console.error(error)
@@ -79,7 +73,7 @@ router.get('/getchitiethoadon/:id', async (req, res) => {
 router.post('/posthoadon', async (req, res) => {
   try {
     const {
-      namenguoibay,
+      namelienhe,
       phone,
       email,
       ngaybay,
@@ -89,33 +83,26 @@ router.post('/posthoadon', async (req, res) => {
       cityto,
       hourfrom,
       hourto,
-      treem,
-      tresosinh,
-      nguoilon,
-      kygui,
-      hanhlykygui,
-      pricekygui,
       xuathoadon,
       masothue,
       tencongty,
       diachi,
       ghichu,
-      themkhach,
-      sokhachthem,
       tienve,
       ngayve,
       hangve,
       chuyenbayve,
       hourvefrom,
       hourveto,
-      tienveve
+      tienveve,
+      khachhangs
     } = req.body
     const thanhphodi = await ThanhPho.findOne({ mathanhpho: cityfrom })
     const thanhphoto = await ThanhPho.findOne({ mathanhpho: cityto })
     const hangmaybay = await HangMayBay.findOne({ mahangmaybay: hang })
 
     const hoadon = new HoaDon({
-      namenguoibay,
+      namelienhe,
       phone,
       email,
       ngaybay,
@@ -125,41 +112,33 @@ router.post('/posthoadon', async (req, res) => {
       cityto: thanhphoto._id,
       hourfrom,
       hourto,
-      treem,
-      tresosinh,
-      nguoilon,
-      kygui,
-      pricekygui: 0,
       xuathoadon,
       ghichu,
-      themkhach,
-      sokhachthem: 0,
       tienve,
       trangthai: 'Chờ thanh toán',
       ngaytao: momenttimezone().toDate()
     })
+
+    hoadon.khachbay = khachhangs.map(
+      ({ namebay, doituong, kygui, hanhlykygui, pricekygui }) => ({
+        namebay,
+        doituong,
+        kygui,
+        hanhlykygui,
+        pricekygui
+      })
+    )
+    const totalPricekygui = khachhangs.reduce((total, khach) => {
+      return total + (parseFloat(khach.pricekygui) || 0)
+    }, 0)
+
     hoadon.mahoadon = 'HD' + hoadon._id.toString().slice(0, 4)
-    if (kygui === true) {
-      hoadon.hanhlykygui = hanhlykygui
-      hoadon.pricekygui = pricekygui
-    }
     if (xuathoadon === true) {
       hoadon.masothue = masothue
       hoadon.tencongty = tencongty
       hoadon.diachi = diachi
     }
-    if (themkhach === true) {
-      hoadon.sokhachthem = sokhachthem
-    }
-    let tongtien =
-      parseFloat(tienve) +
-      parseFloat(pricekygui || 0) +
-      (parseFloat(tienve) /
-        (parseInt(treem || 0) +
-          parseInt(tresosinh || 0) +
-          parseInt(nguoilon || 0))) *
-        parseInt(sokhachthem || 0)
-
+    let tongtien = parseFloat(tienve) + totalPricekygui
     if (ngayve) {
       hoadon.ngayve = ngayve
       hoadon.hangve = hangve
@@ -167,14 +146,7 @@ router.post('/posthoadon', async (req, res) => {
       hoadon.hourvefrom = hourvefrom
       hoadon.hourveto = hourveto
       hoadon.tienveve = tienveve
-      tongtien +=
-        parseFloat(tienveve) +
-        parseFloat(pricekygui || 0) +
-        (parseFloat(tienveve) /
-          (parseInt(treem || 0) +
-            parseInt(tresosinh || 0) +
-            parseInt(nguoilon || 0))) *
-          parseInt(sokhachthem || 0)
+      tongtien += parseFloat(tienveve)
     }
 
     hoadon.tongtien = tongtien

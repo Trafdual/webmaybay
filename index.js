@@ -10,11 +10,12 @@ const MongoStore = require('connect-mongo')
 const vungroutes = require('./routes/VungRoutes')
 const thanhphoroutes = require('./routes/ThanhPhoRoutes')
 const hangmaybayroutes = require('./routes/HangMayBayRoutes')
-const phantramRoutes= require('./routes/PhanTramRoutes')
+const phantramRoutes = require('./routes/PhanTramRoutes')
 const theloaiblogRoutes = require('./routes/TheLoaiBlogRoutes')
 const blogroutes = require('./routes/BlogRoutes')
 const hoadonRoutes = require('./routes/HoaDonRoutes')
 const userRoutes = require('./routes/UserRoutes')
+const nganhangroutes = require('./routes/NganHangRoutes')
 var app = express()
 
 app.use(methodOverride('_method'))
@@ -54,13 +55,14 @@ app.use(express.static(path.join(__dirname, '/uploads')))
 
 app.use('/', vungroutes)
 app.use('/', thanhphoroutes)
-app.use('/',hangmaybayroutes)
+app.use('/', hangmaybayroutes)
 app.use('/', phantramRoutes)
-app.use('/',theloaiblogRoutes)
-app.use('/',blogroutes)
-app.use('/',hoadonRoutes)
+app.use('/', theloaiblogRoutes)
+app.use('/', blogroutes)
+app.use('/', hoadonRoutes)
 app.use('/', userRoutes)
 
+app.use('/', nganhangroutes)
 
 app.listen(3013, () => {
   try {
