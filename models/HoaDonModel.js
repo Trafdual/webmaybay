@@ -7,11 +7,17 @@ const hoadonSchema = new mongoose.Schema({
   email: { type: String },
   ngaybay: { type: String },
   hang: { type: mongoose.Schema.Types.ObjectId, ref: 'hangmaybay' },
-  chuyenbay:{type:String},
+  chuyenbay: { type: String },
   cityfrom: { type: mongoose.Schema.Types.ObjectId, ref: 'thanhpho' },
   cityto: { type: mongoose.Schema.Types.ObjectId, ref: 'thanhpho' },
   hourfrom: { type: String },
   hourto: { type: String },
+  ngayve:{type:String},
+  hangve:{type:String},
+  chuyenbayve:{type:String},
+  hourvefrom:{ type:String},
+  hourveto:{ type:String},
+  tienveve:{type:String},
   treem: { type: Number },
   tresosinh: { type: Number },
   nguoilon: { type: Number },
@@ -28,7 +34,7 @@ const hoadonSchema = new mongoose.Schema({
   tienve: { type: Number },
   tongtien: { type: Number },
   trangthai: { type: String },
-  ngaytao:{type:Date},
+  ngaytao: { type: Date }
 })
 
 const hoadon = mongoose.model('hoadon', hoadonSchema)

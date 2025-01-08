@@ -102,7 +102,13 @@ router.post('/posthoadon', async (req, res) => {
       ghichu,
       themkhach,
       sokhachthem,
-      tienve
+      tienve,
+      ngayve,
+      hangve,
+      chuyenbayve,
+      hourvefrom,
+      hourveto,
+      tienveve
     } = req.body
     const thanhphodi = await ThanhPho.findOne({ mathanhpho: cityfrom })
     const thanhphoto = await ThanhPho.findOne({ mathanhpho: cityto })
@@ -145,7 +151,7 @@ router.post('/posthoadon', async (req, res) => {
     if (themkhach === true) {
       hoadon.sokhachthem = sokhachthem
     }
-    const tongtien =
+    let tongtien =
       parseFloat(tienve) +
       parseFloat(pricekygui || 0) +
       (parseFloat(tienve) /
@@ -153,6 +159,23 @@ router.post('/posthoadon', async (req, res) => {
           parseInt(tresosinh || 0) +
           parseInt(nguoilon || 0))) *
         parseInt(sokhachthem || 0)
+
+    if (ngayve) {
+      hoadon.ngayve = ngayve
+      hoadon.hangve = hangve
+      hoadon.chuyenbayve = chuyenbayve
+      hoadon.hourvefrom = hourvefrom
+      hoadon.hourveto = hourveto
+      hoadon.tienveve = tienveve
+      tongtien +=
+        parseFloat(tienveve) +
+        parseFloat(pricekygui || 0) +
+        (parseFloat(tienveve) /
+          (parseInt(treem || 0) +
+            parseInt(tresosinh || 0) +
+            parseInt(nguoilon || 0))) *
+          parseInt(sokhachthem || 0)
+    }
 
     hoadon.tongtien = tongtien
     await hoadon.save()
