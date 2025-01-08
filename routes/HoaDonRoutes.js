@@ -26,8 +26,7 @@ router.get('/gethoadon', async (req, res) => {
           hourto: hoadon1.hourto,
           tongtien: hoadon1.tongtien,
           trangthai: hoadon1.trangthai,
-          ngaytao:moment(hoadon1.ngaytao).format('DD-MM-YYYY')
-
+          ngaytao: moment(hoadon1.ngaytao).format('DD-MM-YYYY')
         }
       })
     )
@@ -156,6 +155,18 @@ router.post('/posthoadon', async (req, res) => {
         parseInt(sokhachthem || 0)
 
     hoadon.tongtien = tongtien
+    await hoadon.save()
+    res.json(hoadon)
+  } catch (error) {
+    console.error(error)
+  }
+})
+
+router.post('/postthanhtoan/:mahoadon', async (req, res) => {
+  try {
+    const mahoadon = req.params.mahoadon
+    const hoadon = await HoaDon.findOne({ mahoadon })
+    hoadon.trangthai = 'Đã thanh toán'
     await hoadon.save()
     res.json(hoadon)
   } catch (error) {
