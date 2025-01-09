@@ -129,7 +129,7 @@ router.post('/posthoadon', async (req, res) => {
       return total + (parseFloat(khach.pricekygui) || 0)
     }, 0)
 
-    hoadon.mahoadon = 'HD' + hoadon._id.toString().slice(0, 4)
+    hoadon.mahoadon = 'HD' + hoadon._id.toString().slice(-4)
     if (xuathoadon === true) {
       hoadon.masothue = masothue
       hoadon.tencongty = tencongty
