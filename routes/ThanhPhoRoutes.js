@@ -78,18 +78,30 @@ router.post('/putthanhpho/:idthanhpho', async (req, res) => {
   }
 })
 
-router.post('/deletethanhpho/:idthanhpho', async (req, res) => {
+router.delete('/deletethanhpho', async (req, res) => {
   try {
-    const idthanhpho = req.params.idthanhpho
-    const thanhpho = await ThanhPho.findById(idthanhpho)
-    const vung = await Vung.findById(thanhpho.vung)
-    vung.thanhpho = vung.thanhpho.filter(
-      tp => tp._id.toString() !== idthanhpho.toString()
-    )
-    await vung.save()
-    res.json(vung)
+    const { ids } = req.body
+    if (!Array.isArray(ids) || ids.length === 0) {
+      return res
+        .status(400)
+        .json({ message: 'Không có ID nào được cung cấp để xóa.' })
+    }
+    const thanhphos = await ThanhPho.find({ _id: { $in: ids } })
+    const vungIds = thanhphos.map(tp => tp.vung)
+    const vungs = await Vung.find({ _id: { $in: vungIds } })
+    for (const vung of vungs) {
+      vung.thanhpho = vung.thanhpho.filter(
+        tp => !ids.includes(tp._id.toString())
+      )
+      await vung.save()
+    }
+    const result = await ThanhPho.deleteMany({ _id: { $in: ids } })
+    res.json({
+      message: `Đã xóa thành công ${result.deletedCount} thành phố và cập nhật các vùng liên quan.`
+    })
   } catch (error) {
     console.error(error)
+    res.status(500).json({ message: 'Đã xảy ra lỗi khi xóa thành phố.' })
   }
 })
 

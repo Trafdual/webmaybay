@@ -33,7 +33,7 @@ router.post(
       await nganhang.save()
       res.json(nganhang)
     } catch (error) {
-        console.error(error)
+      console.error(error)
     }
   }
 )
@@ -45,11 +45,22 @@ router.post(
     try {
       const { tennganhang, tendaydu, tentaikhoan, sotaikhoan, chinhanh } =
         req.body
+      const id = req.params.id
       const domain = 'https://demovemaybay.shop'
       const image = req.files['image']
         ? `${domain}/${req.files['image'][0].filename}`
         : null
 
+      const nganhang = await NganHang.findById(id)
+
+      nganhang.tennganhang = tennganhang
+      nganhang.tendaydu = tendaydu
+      nganhang.tentaikhoan = tentaikhoan
+      nganhang.sotaikhoan = sotaikhoan
+      nganhang.chinhanh = chinhanh
+      if (image) {
+        nganhang.image = image
+      }
       await nganhang.save()
       res.json(nganhang)
     } catch (error) {
@@ -58,6 +69,17 @@ router.post(
   }
 )
 
-
+router.post('/deletenganhang', async (req, res) => {
+  try {
+    const { ids } = req.body
+    if (!Array.isArray(ids) || ids.length === 0) {
+      return res.status(400).json({ message: 'Danh sách id không hợp lệ' })
+    }
+    await NganHang.deleteMany({ _id: { $in: ids } })
+    res.json({ message: 'Xóa ngan hang thanh cong' })
+  } catch (error) {
+    console.error(error)
+  }
+})
 
 module.exports = router

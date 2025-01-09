@@ -97,9 +97,6 @@ router.post('/posthoadon', async (req, res) => {
       tienveve,
       khachhangs
     } = req.body
-    const thanhphodi = await ThanhPho.findOne({ mathanhpho: cityfrom })
-    const thanhphoto = await ThanhPho.findOne({ mathanhpho: cityto })
-    const hangmaybay = await HangMayBay.findOne({ mahangmaybay: hang })
 
     const hoadon = new HoaDon({
       namelienhe,
@@ -107,19 +104,17 @@ router.post('/posthoadon', async (req, res) => {
       email,
       ngaybay,
       chuyenbay,
-      cityfrom: thanhphodi._id,
-      cityto: thanhphoto._id,
+      cityfrom,
+      cityto,
       hourfrom,
       hourto,
       xuathoadon,
       ghichu,
       tienve,
       trangthai: 'Chờ thanh toán',
+      hang,
       ngaytao: momenttimezone().toDate()
     })
-    if (hangmaybay) {
-      hoadon.hang = hangmaybay._id
-    }
 
     hoadon.khachbay = khachhangs.map(
       ({ namebay, doituong, kygui, hanhlykygui, pricekygui }) => ({
@@ -232,6 +227,5 @@ router.post('/searchhoadon2', async (req, res) => {
     res.status(500).json({ error: 'Đã xảy ra lỗi khi tìm kiếm hóa đơn.' })
   }
 })
-
 
 module.exports = router
