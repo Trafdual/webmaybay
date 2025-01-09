@@ -157,8 +157,15 @@ router.post('/posthoadon', async (req, res) => {
 router.post('/postthanhtoan/:mahoadon', async (req, res) => {
   try {
     const mahoadon = req.params.mahoadon
+    const { datghe, ghe, tiendatghe } = req.body
     const hoadon = await HoaDon.findOne({ mahoadon })
     hoadon.trangthai = 'Đã thanh toán'
+    if (datghe === true) {
+      hoadon.datghe = datghe
+      hoadon.ghe = ghe
+      hoadon.tiendatghe = tiendatghe
+      hoadon.tongtien += parseFloat(tiendatghe)
+    }
     await hoadon.save()
     res.json(hoadon)
   } catch (error) {

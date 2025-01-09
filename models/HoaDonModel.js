@@ -8,8 +8,8 @@ const hoadonSchema = new mongoose.Schema({
   ngaybay: { type: String },
   hang: { type: String },
   chuyenbay: { type: String },
-  cityfrom: { type:String },
-  cityto: { type:String },
+  cityfrom: { type: String },
+  cityto: { type: String },
   hourfrom: { type: String },
   hourto: { type: String },
   ngayve: { type: String },
@@ -35,7 +35,10 @@ const hoadonSchema = new mongoose.Schema({
       hanhlykygui: { type: String },
       pricekygui: { type: Number }
     }
-  ]
+  ],
+  datghe: { type: Boolean, default: false },
+  ghe: { type: String },
+  tiendatghe: { type: Number }
 })
 
 const hoadon = mongoose.model('hoadon', hoadonSchema)
