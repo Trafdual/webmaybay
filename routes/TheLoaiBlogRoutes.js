@@ -23,18 +23,40 @@ router.post('/posttheloaiblog', async (req, res) => {
   }
 })
 
-router.post('/deletetheloaiblog/:idtheloaiblog', async (req, res) => {
+router.post('/puttheloaiblog/:idtheloaiblog', async (req, res) => {
   try {
     const idtheloaiblog = req.params.idtheloaiblog
+    const { name } = req.body
     const theloaiblog = await TheLoaiBlog.findById(idtheloaiblog)
-    await Promise.all(
-      theloaiblog.blog.map(async bl => {
-        await Blog.findByIdAndDelete(bl._id)
-      })
-    )
-    await TheLoaiBlog.findByIdAndDelete(idtheloaiblog)
-    res.json({mesage:'Xóa thành công'})
-  } catch (error) {}
+    theloaiblog.name = name
+    await theloaiblog.save()
+    res.json(theloaiblog)
+  } catch (error) {
+    console.error(error)
+  }
+})
+
+router.post('/deletetheloaiblogs', async (req, res) => {
+  try {
+    const { ids } = req.body
+    if (!ids || !Array.isArray(ids)) {
+      return res.status(400).json({ message: 'Danh sách ID không hợp lệ' })
+    }
+
+    const theloaiblogs = await TheLoaiBlog.find({
+      _id: { $in: ids }
+    })
+    const allBlogIds = theloaiblogs.flatMap(tl => tl.blog.map(bl => bl._id))
+
+    await Blog.deleteMany({ _id: { $in: allBlogIds } })
+
+    await TheLoaiBlog.deleteMany({ _id: { $in: ids } })
+
+    res.json({ message: 'Xóa thành công' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Lỗi khi xóa dữ liệu' })
+  }
 })
 
 module.exports = router

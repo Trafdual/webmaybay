@@ -14,6 +14,7 @@ router.get('/getblog', async (req, res) => {
             return {
               _id: blog1._id,
               tieude: blog1.tieude
+
             }
           })
         )
@@ -75,19 +76,36 @@ router.get('/getblog/:namtheloai', async (req, res) => {
   }
 })
 
-router.post('/deleteblog/:idblog', async (req, res) => {
+router.post('/deleteblogs', async (req, res) => {
   try {
-    const idblog = req.params.idblog
-    const blog = await Blog.findById(idblog)
-    const theloai = await TheLoaiBlog.findById(blog.theloaiblog)
-    theloai.blog = theloai.blog.filter(b => b._id != blog._id)
-    await theloai.save()
-    await Blog.findByIdAndDelete(idblog)
-    res.json(blog)
+    const { idblogs } = req.body
+
+    if (!idblogs || !Array.isArray(idblogs)) {
+      return res.status(400).json({ message: 'Danh sách ID không hợp lệ' })
+    }
+
+    const blogs = await Blog.find({ _id: { $in: idblogs } })
+
+    const theloaiIds = [...new Set(blogs.map(blog => blog.theloaiblog))]
+
+    const theloais = await TheLoaiBlog.find({ _id: { $in: theloaiIds } })
+    theloais.forEach(theloai => {
+      theloai.blog = theloai.blog.filter(
+        blog => !idblogs.includes(blog._id.toString())
+      )
+    })
+
+    await Promise.all(theloais.map(theloai => theloai.save()))
+
+    await Blog.deleteMany({ _id: { $in: idblogs } })
+
+    res.json({ message: 'Xóa thành công', deletedBlogs: idblogs })
   } catch (error) {
     console.error(error)
+    res.status(500).json({ message: 'Lỗi khi xóa dữ liệu' })
   }
 })
+
 
 router.get('/getblogid/:idtheloai', async (req, res) => {
   try {
@@ -98,10 +116,25 @@ router.get('/getblogid/:idtheloai', async (req, res) => {
         const blog1 = await Blog.findById(bl._id)
         return {
           _id: blog1._id,
-          tieude: blog1.tieude
+          tieude: blog1.tieude,
+          noidung: blog1.noidung
         }
       })
     )
+    res.json(blog)
+  } catch (error) {
+    console.error(error)
+  }
+})
+
+router.post('/putblog/:idblog', async (req, res) => {
+  try {
+    const idblog = req.params.idblog
+    const { tieude, noidung } = req.body
+    const blog = await Blog.findById(idblog)
+    blog.tieude = tieude
+    blog.noidung = noidung
+    await blog.save()
     res.json(blog)
   } catch (error) {
     console.error(error)
