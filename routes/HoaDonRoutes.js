@@ -202,4 +202,36 @@ router.post('/searchhoadon', async (req, res) => {
   }
 })
 
+router.post('/searchhoadon2', async (req, res) => {
+  try {
+    const { query } = req.body
+    if (!query) {
+      return res
+        .status(400)
+        .json({ error: 'Vui lòng nhập số điện thoại hoặc mã hóa đơn.' })
+    }
+
+    let condition
+    if (/^\d{10,11}$/.test(query)) {
+      condition = { phone: query }
+    } else if (/^[a-zA-Z0-9]+$/.test(query)) {
+      condition = { mahoadon: query }
+    } else {
+      return res.status(400).json({ error: 'Dữ liệu nhập không hợp lệ.' })
+    }
+
+    const hoadon = await HoaDon.find(condition)
+
+    if (!hoadon) {
+      return res.status(404).json({ error: 'Không tìm thấy hóa đơn phù hợp.' })
+    }
+
+    res.json(hoadon)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: 'Đã xảy ra lỗi khi tìm kiếm hóa đơn.' })
+  }
+})
+
+
 module.exports = router
