@@ -2,6 +2,9 @@ const express = require('express')
 const router = express.Router()
 const TheLoaiBlog = require('../models/TheLoaiBlog')
 const Blog = require('../models/BlogModel')
+const cheerio = require('cheerio')
+const mongoose = require('mongoose')
+const moment = require('moment')
 
 router.get('/getblog', async (req, res) => {
   try {
@@ -14,7 +17,6 @@ router.get('/getblog', async (req, res) => {
             return {
               _id: blog1._id,
               tieude: blog1.tieude
-
             }
           })
         )
@@ -31,11 +33,11 @@ router.get('/getblog', async (req, res) => {
   }
 })
 
-router.get('/getchitietblog/:idblog',async(req,res)=>{
+router.get('/getchitietblog/:idblog', async (req, res) => {
   try {
     const idblog = req.params.idblog
     const blog = await Blog.findById(idblog)
-    res.json(blog) 
+    res.json(blog)
   } catch (error) {
     console.error(error)
   }
@@ -64,15 +66,36 @@ router.get('/getblog/:namtheloai', async (req, res) => {
     const blog = await Promise.all(
       theloai.blog.map(async bl => {
         const blog1 = await Blog.findById(bl._id)
+        const createdAt = new mongoose.Types.ObjectId(blog1._id).getTimestamp()
+
+        let descripton = ''
+        if (blog1.noidung) {
+          const $ = cheerio.load(blog1.noidung)
+          $('h1, h2, h3, h4, h5, h6').remove()
+          const paragraphs = $('p')
+            .filter(function () {
+              return $(this).text().trim().length > 0
+            })
+            .map(function () {
+              return $(this).text().trim()
+            })
+            .get()
+
+          descripton = paragraphs[0] || ''
+        }
+
         return {
           _id: blog1._id,
-          tieude: blog1.tieude
+          tieude: blog1.tieude,
+          descripton: descripton,
+          date: moment(createdAt.toISOString()).locale('vi').format('DD [Tháng] MM [năm] YYYY')
         }
       })
     )
     res.json(blog)
   } catch (error) {
     console.error(error)
+    res.status(500).json({ error: 'Đã xảy ra lỗi' })
   }
 })
 
@@ -105,7 +128,6 @@ router.post('/deleteblogs', async (req, res) => {
     res.status(500).json({ message: 'Lỗi khi xóa dữ liệu' })
   }
 })
-
 
 router.get('/getblogid/:idtheloai', async (req, res) => {
   try {

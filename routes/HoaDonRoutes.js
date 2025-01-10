@@ -11,6 +11,7 @@ router.get('/gethoadon', async (req, res) => {
     const hoadonjson = await Promise.all(
       hoadon.map(async hoadon1 => {
         return {
+          _id: hoadon1._id,
           mahoadon: hoadon1.mahoadon,
           namelienhe: hoadon1.namelienhe,
           phone: hoadon1.phone,
@@ -154,22 +155,26 @@ router.post('/posthoadon', async (req, res) => {
   }
 })
 
-router.post('/postthanhtoan/:mahoadon', async (req, res) => {
+router.post('/postthanhtoan', async (req, res) => {
   try {
-    const mahoadon = req.params.mahoadon
-    const { datghe, ghe, tiendatghe } = req.body
-    const hoadon = await HoaDon.findOne({ mahoadon })
-    hoadon.trangthai = 'Đã thanh toán'
-    if (datghe === true) {
-      hoadon.datghe = datghe
-      hoadon.ghe = ghe
-      hoadon.tiendatghe = tiendatghe
-      hoadon.tongtien += parseFloat(tiendatghe)
+    const { idhoadonList } = req.body
+    if (!Array.isArray(idhoadonList) || idhoadonList.length === 0) {
+      return res.status(400).json({ error: 'Danh sách hóa đơn không hợp lệ' })
     }
-    await hoadon.save()
-    res.json(hoadon)
+
+    const result = await HoaDon.updateMany(
+      { _id: { $in: idhoadonList } },
+      { $set: { trangthai: 'Đã thanh toán' } }
+    )
+
+    res.json({
+      message: 'Cập nhật thành công',
+      matchedCount: result.matchedCount,
+      modifiedCount: result.modifiedCount
+    })
   } catch (error) {
     console.error(error)
+    res.status(500).json({ error: 'Lỗi xử lý thanh toán hàng loạt' })
   }
 })
 
@@ -232,6 +237,37 @@ router.post('/searchhoadon2', async (req, res) => {
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'Đã xảy ra lỗi khi tìm kiếm hóa đơn.' })
+  }
+})
+router.post('/postchonghe/:idhoadon', async (req, res) => {
+  try {
+    const idhoadon = req.params.idhoadon
+    const { datghe, ghe, tiendatghe } = req.body
+    const hoadon = await HoaDon.findById(idhoadon)
+    hoadon.datghe = datghe
+    hoadon.ghe = ghe
+    hoadon.tiendatghe = tiendatghe
+    hoadon.tongtien += tiendatghe
+    await hoadon.save()
+    res.json(hoadon)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: 'lỗi đặt ghế' })
+  }
+})
+router.post('/huychonghe/:idhoadon', async (req, res) => {
+  try {
+    const idhoadon = req.params.idhoadon
+    const hoadon = await HoaDon.findById(idhoadon)
+    hoadon.datghe = false
+    hoadon.ghe = ''
+    hoadon.tiendatghe = 0
+    hoadon.tongtien = hoadon.tongtien - 20000
+    await hoadon.save()
+    res.json(hoadon)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: 'lỗi hủy ghế' })
   }
 })
 
