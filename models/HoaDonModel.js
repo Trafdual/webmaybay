@@ -38,7 +38,8 @@ const hoadonSchema = new mongoose.Schema({
   ],
   datghe: { type: Boolean, default: false },
   ghe: { type: String },
-  tiendatghe: { type: Number }
+  tiendatghe: { type: Number },
+  mavoucher:{type:String}
 })
 
 const hoadon = mongoose.model('hoadon', hoadonSchema)

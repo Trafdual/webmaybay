@@ -16,8 +16,9 @@ const blogroutes = require('./routes/BlogRoutes')
 const hoadonRoutes = require('./routes/HoaDonRoutes')
 const userRoutes = require('./routes/UserRoutes')
 const nganhangroutes = require('./routes/NganHangRoutes')
-var app = express()
+const voucherroutes = require('./routes/VoucherRoutes')
 
+var app = express()
 app.use(methodOverride('_method'))
 
 const uri =
@@ -63,6 +64,7 @@ app.use('/', hoadonRoutes)
 app.use('/', userRoutes)
 
 app.use('/', nganhangroutes)
+app.use('/', voucherroutes)
 
 app.listen(3013, () => {
   try {

@@ -4,6 +4,7 @@ const ThanhPho = require('../models/ThanhPhoModel')
 const HoaDon = require('../models/HoaDonModel')
 const momenttimezone = require('moment-timezone')
 const moment = require('moment')
+const Voucher = require('../models/VoucherModel')
 
 router.get('/gethoadon', async (req, res) => {
   try {
@@ -96,7 +97,8 @@ router.post('/posthoadon', async (req, res) => {
       hourvefrom,
       hourveto,
       tienveve,
-      khachhangs
+      khachhangs,
+      mavoucher
     } = req.body
 
     const hoadon = new HoaDon({
@@ -145,6 +147,14 @@ router.post('/posthoadon', async (req, res) => {
       hoadon.hourveto = hourveto
       hoadon.tienveve = tienveve
       tongtien += parseFloat(tienveve)
+    }
+
+    if (mavoucher) {
+      const voucher = await Voucher.findOne({ mavoucher: mavoucher })
+      if (voucher) {
+        hoadon.mavoucher = mavoucher
+        tongtien -= parseFloat(voucher.sotien)
+      }
     }
 
     hoadon.tongtien = tongtien
