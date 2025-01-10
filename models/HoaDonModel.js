@@ -17,7 +17,7 @@ const hoadonSchema = new mongoose.Schema({
   chuyenbayve: { type: String },
   hourvefrom: { type: String },
   hourveto: { type: String },
-  tienveve: { type: String },
+  tienveve: { type: Number },
   xuathoadon: { type: Boolean, default: false },
   masothue: { type: String },
   tencongty: { type: String },

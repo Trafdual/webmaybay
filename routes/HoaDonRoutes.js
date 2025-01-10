@@ -37,9 +37,6 @@ router.get('/getchitiethoadon/:id', async (req, res) => {
   try {
     const id = req.params.id
     const hoadon = await HoaDon.findById(id).lean()
-    const hangmaybay = await HangMayBay.findById(hoadon.hang)
-    const thanhphodi = await ThanhPho.findById(hoadon.cityfrom)
-    const thanhphoto = await ThanhPho.findById(hoadon.cityto)
     res.json({
       mahoadon: hoadon.mahoadon,
       namelienhe: hoadon.namelienhe,
@@ -52,9 +49,9 @@ router.get('/getchitiethoadon/:id', async (req, res) => {
       hourvefrom: hoadon.hourvefrom || '',
       hourveto: hoadon.hourto || '',
       tienveve: hoadon.tienveve || '',
-      hang: hangmaybay.name,
-      cityfrom: thanhphodi.name,
-      cityto: thanhphoto.name,
+      hang: hoadon.hang,
+      cityfrom: hoadon.cityfrom,
+      cityto: hoadon.cityto,
       hourfrom: hoadon.hourfrom,
       hourto: hoadon.hourto,
       xuathoadon: hoadon.xuathoadon,
@@ -65,7 +62,10 @@ router.get('/getchitiethoadon/:id', async (req, res) => {
       tienve: hoadon.tienve,
       tongtien: hoadon.tongtien,
       ngaytao: moment(hoadon.ngaytao).format('DD-MM-YYYY'),
-      khachbay: hoadon.khachbay
+      khachbay: hoadon.khachbay,
+      datghe: hoadon.datghe,
+      ghe: hoadon.ghe,
+      tiendatghe: hoadon.tiendatghe
     })
   } catch (error) {
     console.error(error)
@@ -154,6 +154,8 @@ router.post('/posthoadon', async (req, res) => {
       if (voucher) {
         hoadon.mavoucher = mavoucher
         tongtien -= parseFloat(voucher.sotien)
+      } else {
+        return res.status(400).json({ message: 'Mã voucher không tồn tại' })
       }
     }
 
@@ -172,15 +174,13 @@ router.post('/postthanhtoan', async (req, res) => {
       return res.status(400).json({ error: 'Danh sách hóa đơn không hợp lệ' })
     }
 
-    const result = await HoaDon.updateMany(
+    await HoaDon.updateMany(
       { _id: { $in: idhoadonList } },
       { $set: { trangthai: 'Đã thanh toán' } }
     )
 
     res.json({
-      message: 'Cập nhật thành công',
-      matchedCount: result.matchedCount,
-      modifiedCount: result.modifiedCount
+      message: 'Cập nhật thành công'
     })
   } catch (error) {
     console.error(error)
@@ -216,6 +216,20 @@ router.post('/searchhoadon', async (req, res) => {
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'Đã xảy ra lỗi khi tìm kiếm hóa đơn.' })
+  }
+})
+router.post('/deletehoadon', async (req, res) => {
+  try {
+    const { idhoadons } = req.body
+    
+    if (!Array.isArray(idhoadons) || idhoadons.length === 0) {
+      return res.status(400).json({ error: 'Danh sách ID không hợp lệ' })
+    }
+
+    await HoaDon.deleteMany({ _id: { $in: idhoadons } })
+    res.json({ message: 'Xóa hóa đơn thanh cong' })
+  } catch (error) {
+    res.status(500).json({ error: 'Đã xảy ra lỗi khi xóa hóa đơn.' })
   }
 })
 

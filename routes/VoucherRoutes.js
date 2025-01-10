@@ -36,11 +36,35 @@ router.post('/putvoucher/:idvoucher', async (req, res) => {
   }
 })
 
-router.delete('/deletevoucher/:idvoucher', async (req, res) => {
+router.delete('/deletevouchers', async (req, res) => {
   try {
-    const idvoucher = req.params.idvoucher
-    await Voucher.findByIdAndDelete(idvoucher)
-    res.json({ message: 'Xóa thành công' })
+    const { idvouchers } = req.body
+
+    if (!Array.isArray(idvouchers) || idvouchers.length === 0) {
+      return res.status(400).json({ error: 'Danh sách ID không hợp lệ' })
+    }
+
+    await Voucher.deleteMany({
+      _id: { $in: idvouchers }
+    })
+
+    res.json({
+      message: 'Xóa thành công'
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: 'Đã xảy ra lỗi' })
+  }
+})
+
+router.post('/searchvoucher', async (req, res) => {
+  try {
+    const { mavoucher } = req.body
+    const voucher = await Voucher.findOne({ mavoucher }).lean()
+    if (!voucher) {
+      return res.json({ message: 'không tìm thấy voucher' })
+    }
+    res.json(voucher)
   } catch (error) {
     console.error(error)
   }
