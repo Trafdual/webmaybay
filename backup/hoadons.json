@@ -1,0 +1,41 @@
+[
+  {
+    "_id": {
+      "$oid": "6781ef05f95ca78b927c1b78"
+    },
+    "namelienhe": "Ten Toi La",
+    "phone": "098765433",
+    "email": "ten@gmail.com",
+    "ngaybay": "2025-01-11",
+    "hang": "VU",
+    "chuyenbay": "VU791",
+    "cityfrom": "HAN",
+    "cityto": "SGN",
+    "hourfrom": "23:45",
+    "hourto": "01:55",
+    "xuathoadon": false,
+    "ghichu": "",
+    "tienve": 647192,
+    "trangthai": "Chờ thanh toán",
+    "ngaytao": {},
+    "datghe": true,
+    "khachbay": [
+      {
+        "namebay": "Ten Toi La",
+        "doituong": "Người lớn",
+        "kygui": false,
+        "hanhlykygui": "",
+        "pricekygui": 0,
+        "_id": {
+          "$oid": "6781ef05f95ca78b927c1b79"
+        }
+      }
+    ],
+    "mahoadon": "HD1b78",
+    "mavoucher": "VC5910",
+    "tongtien": 637192,
+    "__v": 0,
+    "ghe": "4A",
+    "tiendatghe": 20000
+  }
+]

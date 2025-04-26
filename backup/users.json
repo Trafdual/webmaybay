@@ -1,0 +1,11 @@
+[
+  {
+    "_id": {
+      "$oid": "677bd440b38ada00bd9c09c5"
+    },
+    "username": "admin",
+    "password": "$2a$10$qZLTxRpDpN0bAToxh0MOmOFJp0bqoW92fkO719MoUnyKrCL6ZxBaC",
+    "role": "admin",
+    "__v": 0
+  }
+]

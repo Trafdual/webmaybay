@@ -105,4 +105,27 @@ router.delete('/deletethanhpho', async (req, res) => {
   }
 })
 
+router.post('/clearthanhpho', async (req, res) => {
+  try {
+    await ThanhPho.deleteMany({})
+    res.json({ message: 'Xóa toàn bộ thành phố thành công!' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Có lỗi xảy ra khi xóa.' })
+  }
+})
+
+router.post('/importthanhpho', async (req, res) => {
+  try {
+    const data = JSON.parse(fs.readFileSync('./backup/thanhphos.json', 'utf-8'))
+
+    await ThanhPho.insertMany(data)
+
+    res.json({ message: 'Import dữ liệu thành công!' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Đã xảy ra lỗi khi import dữ liệu.' })
+  }
+})
+
 module.exports = router

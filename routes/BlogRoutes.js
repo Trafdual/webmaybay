@@ -5,6 +5,8 @@ const Blog = require('../models/BlogModel')
 const cheerio = require('cheerio')
 const mongoose = require('mongoose')
 const moment = require('moment')
+const fs = require('fs')
+
 
 router.get('/getblog', async (req, res) => {
   try {
@@ -88,7 +90,9 @@ router.get('/getblog/:namtheloai', async (req, res) => {
           _id: blog1._id,
           tieude: blog1.tieude,
           descripton: descripton,
-          date: moment(createdAt.toISOString()).locale('vi').format('DD [Tháng] MM [năm] YYYY')
+          date: moment(createdAt.toISOString())
+            .locale('vi')
+            .format('DD [Tháng] MM [năm] YYYY')
         }
       })
     )
@@ -160,6 +164,29 @@ router.post('/putblog/:idblog', async (req, res) => {
     res.json(blog)
   } catch (error) {
     console.error(error)
+  }
+})
+
+router.post('/clearblog', async (req, res) => {
+  try {
+    await Blog.deleteMany({})
+    res.json({ message: 'Xóa toàn bộ Blog thành công!' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Có lỗi xảy ra khi xóa.' })
+  }
+})
+
+router.post('/importblog', async (req, res) => {
+  try {
+    const data = JSON.parse(fs.readFileSync('./backup/blogs.json', 'utf-8'))
+
+    await Blog.insertMany(data)
+
+    res.json({ message: 'Import dữ liệu thành công!' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Đã xảy ra lỗi khi import dữ liệu.' })
   }
 })
 module.exports = router

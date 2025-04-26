@@ -1,0 +1,922 @@
+[
+  {
+    "_id": {
+      "$oid": "6776502164308b43b11a70f9"
+    },
+    "name": "Hà Nội",
+    "__v": 0,
+    "mathanhpho": "HAN"
+  },
+  {
+    "_id": {
+      "$oid": "677650dc64308b43b11a70ff"
+    },
+    "name": "Tp Hồ Chí Minh",
+    "mathanhpho": "SGN",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "67778e7535b1ecb4702183b1"
+    },
+    "name": "Bangkok",
+    "mathanhpho": "BKK",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "67778e9135b1ecb4702183b7"
+    },
+    "name": "Chiang Mai",
+    "mathanhpho": "CNX",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6777a33335b1ecb4702185a3"
+    },
+    "name": "Đà Nẵng",
+    "mathanhpho": "DAD",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8d1bb8cb3e7017906a12"
+    },
+    "name": "Nha Trang",
+    "mathanhpho": "CXR",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8d51b8cb3e7017906a1b"
+    },
+    "name": "Hải Phòng",
+    "mathanhpho": "HPH",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8d78b8cb3e7017906a25"
+    },
+    "name": "Phú Quốc",
+    "mathanhpho": "PQC",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8d96b8cb3e7017906a30"
+    },
+    "name": "Đà Lạt",
+    "mathanhpho": "DLI",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8da7b8cb3e7017906a3c"
+    },
+    "name": "Cần Thơ",
+    "mathanhpho": "VCA",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8dd5b8cb3e7017906a49"
+    },
+    "name": "Quy Nhơn",
+    "mathanhpho": "UIH",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8de4b8cb3e7017906a7d"
+    },
+    "name": "Thanh Hóa",
+    "mathanhpho": "THD",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8df2b8cb3e7017906a8e"
+    },
+    "name": "Vinh",
+    "mathanhpho": "VII",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8dffb8cb3e7017906a9e"
+    },
+    "name": "Huế",
+    "mathanhpho": "HUI",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8e13b8cb3e7017906b31"
+    },
+    "name": "Điện Biên",
+    "mathanhpho": "DIN",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8e2eb8cb3e7017906b43"
+    },
+    "name": "Quàng Ninh",
+    "mathanhpho": "VDO",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8e42b8cb3e7017906b56"
+    },
+    "name": "Buôn Mê Thuột",
+    "mathanhpho": "BMV",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8e55b8cb3e7017906b7e"
+    },
+    "name": "Pleiku",
+    "mathanhpho": "PXU",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8e6cb8cb3e7017906bb3"
+    },
+    "name": "Tuy Hòa",
+    "mathanhpho": "TBB",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8ea1b8cb3e7017906bc9"
+    },
+    "name": "Côn Đảo",
+    "mathanhpho": "VCS",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8eb9b8cb3e7017906bec"
+    },
+    "name": "Rạch Giá",
+    "mathanhpho": "VKG",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8ecab8cb3e7017906c1c"
+    },
+    "name": "Đồng Hới",
+    "mathanhpho": "VDH",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8eddb8cb3e7017906c4c"
+    },
+    "name": "Tam Kỳ",
+    "mathanhpho": "VCL",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8ef0b8cb3e7017906c66"
+    },
+    "name": "Cà Mau",
+    "mathanhpho": "CAH",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8f41b8cb3e7017906c9c"
+    },
+    "name": "Jakarta",
+    "mathanhpho": "CGK",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8f54b8cb3e7017906cbd"
+    },
+    "name": "Kuala Lumpur",
+    "mathanhpho": "KUL",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8f66b8cb3e7017906cc6"
+    },
+    "name": "Luang Prabang",
+    "mathanhpho": "LPQ",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8f73b8cb3e7017906cd0"
+    },
+    "name": "Manila",
+    "mathanhpho": "MNL",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8f85b8cb3e7017906cdb"
+    },
+    "name": "Phnom Penh",
+    "mathanhpho": "PNH",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8f91b8cb3e7017906cf5"
+    },
+    "name": "Phuket",
+    "mathanhpho": "HKT",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8f9cb8cb3e7017906d19"
+    },
+    "name": "Siem Reap",
+    "mathanhpho": "SAI",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8fe1b8cb3e7017906d27"
+    },
+    "name": "Sihanoukville",
+    "mathanhpho": "KOS",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8fedb8cb3e7017906d36"
+    },
+    "name": "Singapore",
+    "mathanhpho": "SIN",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f8ffab8cb3e7017906d8a"
+    },
+    "name": "Vientiane",
+    "mathanhpho": "VTE",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9006b8cb3e7017906ded"
+    },
+    "name": "Yangon",
+    "mathanhpho": "RGN",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9051b8cb3e7017906e13"
+    },
+    "name": "Beijing",
+    "mathanhpho": "PEK",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9060b8cb3e7017906e22"
+    },
+    "name": "Busan",
+    "mathanhpho": "PUS",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f906db8cb3e7017906e78"
+    },
+    "name": "Chengdu",
+    "mathanhpho": "CTU",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9086b8cb3e7017906ece"
+    },
+    "name": "Fukuoka",
+    "mathanhpho": "FUK",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9099b8cb3e7017906ed7"
+    },
+    "name": "Guangzhou",
+    "mathanhpho": "CAN",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f90a7b8cb3e7017906ee1"
+    },
+    "name": "Hàng Châu",
+    "mathanhpho": "HGH",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f90b0b8cb3e7017906eec"
+    },
+    "name": "Hong Kong",
+    "mathanhpho": "HKG",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f90c2b8cb3e7017906f10"
+    },
+    "name": "Kaohsiung",
+    "mathanhpho": "KHH",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f923eb8cb3e7017907182"
+    },
+    "name": "Nagoya",
+    "mathanhpho": "NGO",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f924fb8cb3e7017907190"
+    },
+    "name": "Osaka",
+    "mathanhpho": "KIX",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9263b8cb3e701790719f"
+    },
+    "name": "Seoul",
+    "mathanhpho": "ICN",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f926fb8cb3e70179071af"
+    },
+    "name": "Shanghai",
+    "mathanhpho": "SHA",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f927db8cb3e70179071c0"
+    },
+    "name": "Taipei",
+    "mathanhpho": "TPE",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f92a9b8cb3e70179071d9"
+    },
+    "name": "Tokyo Haneda",
+    "mathanhpho": "HND",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f92b9b8cb3e70179071ec"
+    },
+    "name": "Tokyo Narita",
+    "mathanhpho": "NRT",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f92ccb8cb3e7017907273"
+    },
+    "name": "Shanghai Pudong",
+    "mathanhpho": "PVG",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f92d5b8cb3e7017907288"
+    },
+    "name": "Dubai",
+    "mathanhpho": "DXB",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f92e7b8cb3e701790729e"
+    },
+    "name": "Indira Gandhi",
+    "mathanhpho": "DEL",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f92f9b8cb3e70179072b5"
+    },
+    "name": "Xiamen Gaoqi",
+    "mathanhpho": "XMN",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9312b8cb3e70179072cd"
+    },
+    "name": "Shenzhen Bao'an",
+    "mathanhpho": "SZX",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9324b8cb3e70179072e6"
+    },
+    "name": "Ngurah Rai",
+    "mathanhpho": "DPS",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9345b8cb3e7017907300"
+    },
+    "name": "Kunming Changshui",
+    "mathanhpho": "KMG",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9373b8cb3e7017907338"
+    },
+    "name": "Amsterdam",
+    "mathanhpho": "AMS",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9380b8cb3e701790733e"
+    },
+    "name": "Barcelona",
+    "mathanhpho": "BCN",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f938db8cb3e7017907345"
+    },
+    "name": "Frankfurt",
+    "mathanhpho": "FRA",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f93a3b8cb3e7017907353"
+    },
+    "name": "Geneva",
+    "mathanhpho": "GVA",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f93c5b8cb3e701790737a"
+    },
+    "name": "London",
+    "mathanhpho": "LGW",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f93d1b8cb3e7017907384"
+    },
+    "name": "Lyon",
+    "mathanhpho": "LYS",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f93e1b8cb3e701790738f"
+    },
+    "name": "Madrid",
+    "mathanhpho": "MAD",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f93fab8cb3e701790739d"
+    },
+    "name": "Marseille",
+    "mathanhpho": "MRS",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f941ab8cb3e70179073aa"
+    },
+    "name": "Montpellier",
+    "mathanhpho": "MPL",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9426b8cb3e70179073ba"
+    },
+    "name": "Moscow",
+    "mathanhpho": "SVO",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f942eb8cb3e70179073cb"
+    },
+    "name": "Nice",
+    "mathanhpho": "NCE",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9439b8cb3e70179073db"
+    },
+    "name": "Paris",
+    "mathanhpho": "CDG",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f944eb8cb3e70179073ec"
+    },
+    "name": "Prague",
+    "mathanhpho": "PRG",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9457b8cb3e70179073fe"
+    },
+    "name": "Rome",
+    "mathanhpho": "ROM",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9466b8cb3e7017907411"
+    },
+    "name": "Toulouse",
+    "mathanhpho": "TLS",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f946eb8cb3e7017907425"
+    },
+    "name": "Vienna",
+    "mathanhpho": "VIE",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9485b8cb3e701790743a"
+    },
+    "name": "Zurich",
+    "mathanhpho": "ZRH",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9495b8cb3e701790745c"
+    },
+    "name": "Heathrow",
+    "mathanhpho": "LHR",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f94a8b8cb3e7017907473"
+    },
+    "name": "Copenhagen",
+    "mathanhpho": "CPH",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f94bab8cb3e701790748b"
+    },
+    "name": "Warsaw Chopin",
+    "mathanhpho": "WAW",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f94c3b8cb3e70179074a4"
+    },
+    "name": "Munich",
+    "mathanhpho": "MUC",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f94d2b8cb3e70179074be"
+    },
+    "name": "Helsinki",
+    "mathanhpho": "HEL",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f950ab8cb3e70179074e1"
+    },
+    "name": "Atlanta Hartsfield",
+    "mathanhpho": "ATL",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f95a7b8cb3e7017907682"
+    },
+    "name": "Austin",
+    "mathanhpho": "AUS",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f95bab8cb3e7017907689"
+    },
+    "name": "Boston, Logan",
+    "mathanhpho": "BOS",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f95c8b8cb3e7017907691"
+    },
+    "name": "Chicago IL",
+    "mathanhpho": "CHI",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f95e4b8cb3e701790769a"
+    },
+    "name": "Dallas Fort Worth",
+    "mathanhpho": "DFW",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f95ecb8cb3e70179076a4"
+    },
+    "name": "Denver",
+    "mathanhpho": "DEN",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f95f9b8cb3e70179076af"
+    },
+    "name": "Honolulu",
+    "mathanhpho": "HNL",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f960fb8cb3e70179076bb"
+    },
+    "name": "Los Angeles",
+    "mathanhpho": "LAX",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f961bb8cb3e70179076c8"
+    },
+    "name": "Miami",
+    "mathanhpho": "MIA",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f963bb8cb3e70179076d6"
+    },
+    "name": "Minneapolis/St.Paul",
+    "mathanhpho": "MSP",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9656b8cb3e70179076e5"
+    },
+    "name": "New York",
+    "mathanhpho": "JFK",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9673b8cb3e70179076f5"
+    },
+    "name": "Portland",
+    "mathanhpho": "PDX",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f96f0b8cb3e701790770e"
+    },
+    "name": "San Francisco",
+    "mathanhpho": "SFO",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f970bb8cb3e7017907720"
+    },
+    "name": "Seattle, Tacoma",
+    "mathanhpho": "SEA",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9724b8cb3e7017907739"
+    },
+    "name": "St Louis, Lambert",
+    "mathanhpho": "STL",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9737b8cb3e7017907753"
+    },
+    "name": "Washington",
+    "mathanhpho": "WAS",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f974db8cb3e7017907768"
+    },
+    "name": "George Bush",
+    "mathanhpho": "IAH",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f975ab8cb3e70179077df"
+    },
+    "name": "Dulles",
+    "mathanhpho": "IAD",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9774b8cb3e7017907920"
+    },
+    "name": "Phoenix Sky Harbor",
+    "mathanhpho": "PHX",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f978cb8cb3e7017907b2a"
+    },
+    "name": "Philadelphia",
+    "mathanhpho": "PHL",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9796b8cb3e7017907b43"
+    },
+    "name": "Tampa",
+    "mathanhpho": "TPA",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f97a4b8cb3e7017907b5d"
+    },
+    "name": "San Diego",
+    "mathanhpho": "SAN",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f97cbb8cb3e7017907cb1"
+    },
+    "name": "Sydney",
+    "mathanhpho": "SYD",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f97d9b8cb3e7017907d1f"
+    },
+    "name": "Melbourne",
+    "mathanhpho": "MEL",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f97eab8cb3e7017907d26"
+    },
+    "name": "Brisbane",
+    "mathanhpho": "BNE",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f97f4b8cb3e7017907d2e"
+    },
+    "name": "Perth",
+    "mathanhpho": "PER",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f980ab8cb3e7017907d37"
+    },
+    "name": "Adelaide",
+    "mathanhpho": "ADL",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9817b8cb3e7017907f5a"
+    },
+    "name": "Darwin",
+    "mathanhpho": "DRW",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9829a956d665b4289cff"
+    },
+    "name": "Cairns",
+    "mathanhpho": "CNS",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9835a956d665b4289d7c"
+    },
+    "name": "Gold Coast",
+    "mathanhpho": "OOL",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9841a956d665b4289d89"
+    },
+    "name": "Auckland",
+    "mathanhpho": "AKL",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f9854a956d665b4289d97"
+    },
+    "name": "Wellington",
+    "mathanhpho": "WLG",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f986ba956d665b4289da6"
+    },
+    "name": "Christchurch",
+    "mathanhpho": "CHC",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f987fa956d665b4289db6"
+    },
+    "name": "Palmerston North",
+    "mathanhpho": "PMR",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f98a9a956d665b428a091"
+    },
+    "name": "Johannesburg",
+    "mathanhpho": "JNB",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677f98bea956d665b428a18a"
+    },
+    "name": "Murtala Muhammed",
+    "mathanhpho": "CPT",
+    "__v": 0
+  }
+]

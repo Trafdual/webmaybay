@@ -59,4 +59,29 @@ router.post('/deletetheloaiblogs', async (req, res) => {
   }
 })
 
+router.post('/cleartheloaiblog', async (req, res) => {
+  try {
+    await TheLoaiBlog.deleteMany({})
+    res.json({ message: 'Xóa toàn bộ thể loại thành công!' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Có lỗi xảy ra khi xóa.' })
+  }
+})
+
+router.post('/importtheloaiblog', async (req, res) => {
+  try {
+    const data = JSON.parse(
+      fs.readFileSync('./backup/theloaiblogs.json', 'utf-8')
+    )
+
+    await TheLoaiBlog.insertMany(data)
+
+    res.json({ message: 'Import dữ liệu thành công!' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Đã xảy ra lỗi khi import dữ liệu.' })
+  }
+})
+
 module.exports = router

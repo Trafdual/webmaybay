@@ -1,0 +1,70 @@
+[
+  {
+    "_id": {
+      "$oid": "67790e28d1d920577f3ed494"
+    },
+    "name": "Câu hỏi thường gặp",
+    "blog": [
+      {
+        "$oid": "677916bbfec217b181aeb37b"
+      },
+      {
+        "$oid": "6779173ffec217b181aeb389"
+      },
+      {
+        "$oid": "677917cefec217b181aeb390"
+      }
+    ],
+    "__v": 3
+  },
+  {
+    "_id": {
+      "$oid": "677b912e51e4612a761db96d"
+    },
+    "name": "Vé nội địa",
+    "blog": [
+      {
+        "$oid": "677b91b851e4612a761db980"
+      },
+      {
+        "$oid": "677bb3d4ff275c874af27639"
+      }
+    ],
+    "__v": 2
+  },
+  {
+    "_id": {
+      "$oid": "677b913f51e4612a761db970"
+    },
+    "name": "Vé quốc tế",
+    "blog": [
+      {
+        "$oid": "677ca422b1bcd00cccb8555c"
+      }
+    ],
+    "__v": 1
+  },
+  {
+    "_id": {
+      "$oid": "677b914751e4612a761db973"
+    },
+    "name": "Vé theo hãng",
+    "blog": [],
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "677ba1ebf0fb4538e82a2ee7"
+    },
+    "name": "Tin khuyến mại",
+    "blog": [
+      {
+        "$oid": "677ba234bb5b717f9dc743bb"
+      },
+      {
+        "$oid": "6780b7b742ed778b4bc74c4d"
+      }
+    ],
+    "__v": 2
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "_id": {
+      "$oid": "677e7962d317711c59a0aac0"
+    },
+    "tennganhang": "Vietcombank",
+    "tendaydu": "Ngân hàng TMCP Ngoại thương Việt Nam",
+    "tentaikhoan": "Test Thoi Nhe",
+    "sotaikhoan": "07162818181",
+    "chinhanh": "HCM",
+    "image": "image-1736341858560.png",
+    "__v": 0
+  }
+]

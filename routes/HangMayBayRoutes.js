@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const HangMayBay = require('../models/HangMayBayModel')
 const upload = require('./upload')
+const fs = require('fs')
 
 router.get('/gethangmaybay', async (req, res) => {
   try {
@@ -17,9 +18,9 @@ router.post(
   async (req, res) => {
     try {
       const { name, mahangmaybay } = req.body
-      const domain = 'https://demovemaybay.shop'
+
       const image = req.files['image']
-        ? `${domain}/${req.files['image'][0].filename}`
+        ? `${req.files['image'][0].filename}`
         : null
 
       const hangmaybay = new HangMayBay({
@@ -42,10 +43,9 @@ router.post(
     try {
       const idhang = req.params.idhang
       const { name, mahangmaybay } = req.body
-      const domain = 'https://demovemaybay.shop'
 
       const image = req.files['image']
-        ? `${domain}/${req.files['image'][0].filename}`
+        ? `${req.files['image'][0].filename}`
         : null
 
       const hangmaybay = await HangMayBay.findById(idhang)
@@ -77,5 +77,35 @@ router.post('/deletehang', async (req, res) => {
     res.status(500).json({ message: 'Có lỗi xảy ra khi xóa các hãng máy bay' })
   }
 })
+
+router.post('/clearhang', async (req, res) => {
+  try {
+    await HangMayBay.deleteMany({})
+    res.json({ message: 'Xóa toàn bộ Hãng Máy Bay thành công!' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Có lỗi xảy ra khi xóa.' })
+  }
+})
+
+router.post('/importhang', async (req, res) => {
+  try {
+    const data = JSON.parse(fs.readFileSync('./backup/hangmaybays.json', 'utf-8'))
+
+    const cleanedData = data.map(item => ({
+      name: item.name,
+      mahangmaybay: item.mahangmaybay,
+      image: item.image
+    }))
+
+    await HangMayBay.insertMany(cleanedData)
+
+    res.json({ message: 'Import dữ liệu thành công!' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Đã xảy ra lỗi khi import dữ liệu.' })
+  }
+})
+
 
 module.exports = router

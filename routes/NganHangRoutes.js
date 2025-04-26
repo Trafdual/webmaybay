@@ -17,9 +17,9 @@ router.post(
     try {
       const { tennganhang, tendaydu, tentaikhoan, sotaikhoan, chinhanh } =
         req.body
-      const domain = 'https://demovemaybay.shop'
+     
       const image = req.files['image']
-        ? `${domain}/${req.files['image'][0].filename}`
+        ? `${req.files['image'][0].filename}`
         : null
 
       const nganhang = new NganHang({
@@ -46,9 +46,9 @@ router.post(
       const { tennganhang, tendaydu, tentaikhoan, sotaikhoan, chinhanh } =
         req.body
       const id = req.params.id
-      const domain = 'https://demovemaybay.shop'
+      
       const image = req.files['image']
-        ? `${domain}/${req.files['image'][0].filename}`
+        ? `${req.files['image'][0].filename}`
         : null
 
       const nganhang = await NganHang.findById(id)

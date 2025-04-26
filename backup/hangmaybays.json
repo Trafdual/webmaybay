@@ -1,0 +1,47 @@
+[
+  {
+    "_id": {
+      "$oid": "6777aca4653229248466eee4"
+    },
+    "name": "VietTravel Airline",
+    "mahangmaybay": "VU",
+    "image": "image-1735896228082.gif",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6777acbd653229248466eee6"
+    },
+    "name": "VietNam Airline",
+    "mahangmaybay": "VN",
+    "image": "image-1735896253895.gif",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6777ad11653229248466eee8"
+    },
+    "name": "VietJet Air",
+    "mahangmaybay": "VJ",
+    "image": "image-1735896337294.gif",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6777ad94653229248466eeea"
+    },
+    "name": "BamBoo Airway",
+    "mahangmaybay": "QH",
+    "image": "image-1735896468605.gif",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6777addb653229248466eeec"
+    },
+    "name": "Pacific Airline",
+    "mahangmaybay": "BL",
+    "image": "image-1735896539194.gif",
+    "__v": 0
+  }
+]

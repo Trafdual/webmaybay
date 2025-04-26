@@ -51,4 +51,28 @@ router.post('/deletevung/:id', async (req, res) => {
   }
 })
 
+router.post('/clearvung', async (req, res) => {
+  try {
+    await Vung.deleteMany({})
+    res.json({ message: 'Xóa toàn bộ Vung thành công!' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Có lỗi xảy ra khi xóa.' })
+  }
+})
+
+router.post('/importvung', async (req, res) => {
+  try {
+    const data = JSON.parse(fs.readFileSync('./backup/vungs.json', 'utf-8'))
+
+    await Blog.insertMany(data)
+
+    res.json({ message: 'Import dữ liệu thành công!' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Đã xảy ra lỗi khi import dữ liệu.' })
+  }
+})
+
+
 module.exports = router
